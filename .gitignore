@@ -1,0 +1,16 @@
+# data, weights and run outputs
+datasets/
+MIDOGpp/
+runs/
+models/
+results/detector/
+results/two_stage/
+results/predictions/
+*.pt
+*.pth
+*.tiff
+*.cache
+*.pkl
+__pycache__/
+.pytest_cache/
+*.part
