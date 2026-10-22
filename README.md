@@ -234,3 +234,9 @@ This project uses a balanced subset of **20 images per tumor type** (140 images)
 3. M. Jahanifar et al., "Stain-Robust Mitotic Figure Detection for the Mitosis Domain Generalization Challenge," MIDOG 2021. [arXiv:2109.00853](https://arxiv.org/abs/2109.00853). The detect-then-refine design used here follows this work.
 4. "Robust Pan-Cancer Mitotic Figure Detection with YOLOv12." [arXiv:2509.02593](https://arxiv.org/abs/2509.02593)
 5. [Ultralytics YOLOv8](https://github.com/ultralytics/ultralytics) and [EfficientNet](https://arxiv.org/abs/1905.11946) (Tan and Le, 2019).
+
+---
+
+## Author
+
+**Akshith Kasimsetty**, IIT (BHU) Varanasi. GitHub: [@Ak2005github](https://github.com/Ak2005github)
