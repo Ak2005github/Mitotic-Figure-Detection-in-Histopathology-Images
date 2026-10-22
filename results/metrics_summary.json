@@ -1,0 +1,50 @@
+{
+  "note": "Metrics transcribed from the Kaggle run logs (Session B = first run, Session B2 = final run). Same 14 held-out test images (516 mitoses) in every row; thresholds and score variant chosen on the 7 validation images only.",
+  "test_set": {"images": 14, "mitoses": 516, "match_radius_px": 30},
+  "runs": {
+    "baseline_detector_49_train_images": {
+      "train_images": 49, "train_tiles": 2654, "threshold": 0.65,
+      "test": {"precision": 0.697, "recall": 0.6686, "f1": 0.6825, "tp": 345, "fp": 150, "fn": 171,
+               "mean_abs_count_error": 7.93, "count_correlation": 0.9754},
+      "test_tiles": {"mAP50": 0.7152, "mAP50-95": 0.4494},
+      "per_tumor_type_f1": {"canine cutaneous mast cell tumor": 0.7118, "canine lung cancer": 0.386,
+        "canine lymphosarcoma": 0.7407, "canine soft tissue sarcoma": 0.6154, "human breast cancer": 0.736,
+        "human melanoma": 0.0, "human neuroendocrine tumor": 0.2857},
+      "inference_speed_megapixels_per_s_T4": 16.4
+    },
+    "detector_119_train_images": {
+      "train_images": 119, "train_tiles": 6389, "threshold": 0.475,
+      "test": {"precision": 0.7536, "recall": 0.8062, "f1": 0.779, "tp": 416, "fp": 136, "fn": 100,
+               "mean_abs_count_error": 5.86, "count_correlation": 0.9941},
+      "test_tiles": {"mAP50": 0.8534, "mAP50-95": 0.5841},
+      "per_tumor_type_f1": {"canine cutaneous mast cell tumor": 0.809, "canine lung cancer": 0.6032,
+        "canine lymphosarcoma": 0.8297, "canine soft tissue sarcoma": 0.7143, "human breast cancer": 0.795,
+        "human melanoma": 0.0, "human neuroendocrine tumor": 0.1818}
+    },
+    "two_stage_final": {
+      "variant": "geometric mean", "threshold": 0.65,
+      "test": {"precision": 0.839, "recall": 0.777, "f1": 0.807, "mean_abs_count_error": 5.71, "count_correlation": 0.9942},
+      "per_tumor_type": {
+        "canine cutaneous mast cell tumor": {"precision": 0.831, "recall": 0.808, "f1": 0.819},
+        "canine lung cancer": {"precision": 0.704, "recall": 0.613, "f1": 0.655},
+        "canine lymphosarcoma": {"precision": 0.926, "recall": 0.765, "f1": 0.838},
+        "canine soft tissue sarcoma": {"precision": 0.913, "recall": 0.636, "f1": 0.75},
+        "human breast cancer": {"precision": 0.823, "recall": 0.956, "f1": 0.884},
+        "human melanoma": {"precision": 0.0, "recall": 0.0, "f1": 0.0},
+        "human neuroendocrine tumor": {"precision": 0.4, "recall": 0.167, "f1": 0.235}
+      },
+      "variants": {
+        "detector only":   {"val_f1": 0.8545, "threshold": 0.475, "test": {"precision": 0.754, "recall": 0.806, "f1": 0.779}},
+        "classifier only": {"val_f1": 0.8169, "threshold": 0.9,   "test": {"precision": 0.855, "recall": 0.653, "f1": 0.741}},
+        "geometric mean":  {"val_f1": 0.8668, "threshold": 0.65,  "test": {"precision": 0.839, "recall": 0.777, "f1": 0.807}},
+        "average":         {"val_f1": 0.8647, "threshold": 0.675, "test": {"precision": 0.839, "recall": 0.769, "f1": 0.803}}
+      },
+      "classifier": {"model": "EfficientNet-B0 (ImageNet)", "train_crops": 8502, "positives": 3125,
+        "negatives": 5377, "mined_hard_negatives": 1699, "val_candidates": 524, "best_val_auc": 0.9346,
+        "val_auc_by_epoch": [0.7136, 0.8145, 0.9065, 0.9148, 0.9301, 0.9277, 0.9346, 0.9327]}
+    }
+  },
+  "test_mitoses_per_tumor_type": {"canine cutaneous mast cell tumor": 255, "canine lung cancer": 31,
+    "canine lymphosarcoma": 115, "canine soft tissue sarcoma": 33, "human breast cancer": 68,
+    "human melanoma": 2, "human neuroendocrine tumor": 12}
+}

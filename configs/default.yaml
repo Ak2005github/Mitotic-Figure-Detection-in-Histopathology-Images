@@ -1,0 +1,66 @@
+# Default configuration for the two-stage MIDOG++ pipeline.
+# These are the settings used for the reported results.
+
+data:
+  per_type: 20            # images per tumor type (0 = all 503)
+  base_per_type: 10       # keep the val/test images of the original 10-per-type split
+  test_frac: 0.2          # computed on base_per_type: 2 test images per tumor type
+  val_frac: 0.1           # 1 val image per tumor type
+  holdout: []             # tumor types sent entirely to test (cross-domain experiments)
+  tile: 640
+  overlap: 64
+  neg_ratio: 0.15         # fraction of empty tissue tiles kept as negatives
+  background_threshold: 225
+  crop_size: 128          # crops for the classifier
+  seed: 0
+
+detector:
+  model: yolov8s.pt       # COCO-pretrained
+  epochs: 35
+  patience: 20
+  hours: 0.9              # safety cap; stops training, does not re-plan the schedule
+  imgsz: 640
+  batch: 16
+  workers: 8
+  cache: ram
+  optimizer: AdamW
+  lr0: 0.001
+  warmup_epochs: 2
+  seed: 0
+  augment:                # histopathology augmentations (applied on the fly)
+    fliplr: 0.5
+    flipud: 0.5
+    degrees: 0.0
+    hsv_h: 0.04
+    hsv_s: 0.5
+    hsv_v: 0.3
+    scale: 0.2
+    translate: 0.1
+    shear: 0.0
+    perspective: 0.0
+    mosaic: 1.0
+    close_mosaic: 5
+    mixup: 0.0
+
+inference:
+  tile: 640
+  overlap: 64
+  candidate_conf: 0.05    # stage-1 threshold (high recall)
+  nms_radius: 25          # merge duplicates from overlapping tiles
+  batch: 16
+  background_threshold: 225
+
+classifier:
+  mining_conf: 0.1        # hard negative mining threshold on train tiles
+  max_negative_ratio: 1.5 # mined negatives capped at 1.5x the positives
+  epochs: 8
+  batch: 128
+  lr: 0.0003
+  weight_decay: 0.0001
+  inner: 112              # window taken from the 128 px crop
+  net_size: 224           # upsampled network input
+  workers: 4
+  seed: 0
+
+evaluation:
+  match_radius: 30        # px, about 7.5 micrometres (MIDOG criterion)
